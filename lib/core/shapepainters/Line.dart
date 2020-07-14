@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:touchable/touchable.dart';
 
-class Cross extends CustomPainter {
+class Line extends CustomPainter {
   final BuildContext context;
   final Function onTap;
 
-  Cross(this.context, this.onTap);
+  Line(this.context, this.onTap);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -19,23 +19,6 @@ class Cross extends CustomPainter {
       Offset(
         MediaQuery.of(context).size.width / 1.25,
         0,
-      ),
-      Paint()
-        ..color = Colors.transparent
-        ..strokeWidth = 75,
-      onTapDown: (tapdetail) {
-        onTap();
-      },
-    );
-
-    myCanvas.drawLine(
-      Offset(
-        0,
-        0,
-      ),
-      Offset(
-        MediaQuery.of(context).size.width / 1.25,
-        MediaQuery.of(context).size.width / 1.25,
       ),
       Paint()
         ..color = Colors.transparent

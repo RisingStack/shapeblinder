@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:flutter_svg/flutter_svg.dart";
 import 'package:touchable/touchable.dart';
-import '../../core/shapepainters/Cross.dart';
+import '../../core/shapepainters/Line.dart';
 
 import "../widgets/Logo.dart";
 
