@@ -16,6 +16,7 @@ dependencies:
   flutter_svg: any
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.7.3"
   flutter_test:
     sdk: flutter
 
@@ -25,9 +26,24 @@ flutter:
   assets:
     - assets/svg/tap.svg
 
+    - assets/svg/arc.svg
+    - assets/svg/circle.svg
+    - assets/svg/cross.svg
+    - assets/svg/donut.svg
+    - assets/svg/line.svg
+    - assets/svg/oval.svg
+    - assets/svg/r-square.svg
+    - assets/svg/square.svg
+    - assets/svg/triangle.svg
+
   fonts:
     - family: Muli
       fonts:
         - asset: assets/fonts/Muli.ttf
         - asset: assets/fonts/Muli-Italic.ttf
           style: italic
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo.png"

@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
 
 class Logo extends StatelessWidget {
-  Logo({this.subtitleText});
+  Logo({this.title, this.subtitle});
 
-  final String subtitleText;
+  final String title;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class Logo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                "shapeblinder",
+                title,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 34.0,
@@ -25,7 +26,7 @@ class Logo extends StatelessWidget {
                 ),
               ),
               Text(
-                subtitleText,
+                subtitle,
                 style: TextStyle(
                   fontSize: 24.0,
                   // The Color.xy[n] gets a specific shade of the color

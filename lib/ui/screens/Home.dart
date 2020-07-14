@@ -29,7 +29,8 @@ class Home extends StatelessWidget {
                 ),
                 // add hero cross-screen animation for title
                 Logo(
-                  subtitleText: "a game with the lights off",
+                  title: "shapeblinder",
+                  subtitle: "a game with the lights off",
                 ),
                 Spacer(),
                 Center(

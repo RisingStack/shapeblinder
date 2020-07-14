@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <clipPath id="clip-triangle">
+      <rect width="500" height="500"/>
+    </clipPath>
+  </defs>
+  <g id="triangle" clip-path="url(#clip-triangle)">
+    <path id="Polygon_3" data-name="Polygon 3" d="M250,0,500,500H0Z" fill="#fff"/>
+  </g>
+</svg>
