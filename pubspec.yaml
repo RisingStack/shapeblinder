@@ -34,9 +34,7 @@ flutter:
     - assets/svg/donut.svg
     - assets/svg/line.svg
     - assets/svg/oval.svg
-    - assets/svg/r-square.svg
     - assets/svg/square.svg
-    - assets/svg/triangle.svg
 
   fonts:
     - family: Muli
