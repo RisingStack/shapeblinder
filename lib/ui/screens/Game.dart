@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import "package:flutter_svg/flutter_svg.dart";
 import 'package:touchable/touchable.dart';
 
-import '../../core/shapepainters/Donut.dart';
+import '../../core/GenerateRound.dart';
 
 import "../widgets/Logo.dart";
 
@@ -13,25 +13,67 @@ class Game extends StatefulWidget {
 }
 
 class _GameState extends State<Game> {
-  int point;
+  final GlobalKey scaffoldKey = GlobalKey();
+  RoundData data;
+  int points = 0;
 
-  void guess(int index) {
-    HapticFeedback.lightImpact();
-    print("guess: $index");
+  @override
+  void initState() {
+    reset();
+    super.initState();
   }
 
-  void correct() {
-    HapticFeedback.vibrate();
+  void reset() {
+    setState(() {
+      points = 0;
+      data = generateRound();
+    });
+  }
+
+  void guess(BuildContext context, String name) {
+    HapticFeedback.lightImpact();
+    if (data.options[data.correct] == name) {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 1),
+          content: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                Icons.check,
+                size: 80,
+              ),
+              Container(width: 10),
+              Text(
+                "Correct!",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      setState(() {
+        points++;
+        data = generateRound();
+      });
+    } else {
+      lost();
+    }
   }
 
   void lost() {
     HapticFeedback.vibrate();
+    reset();
     Navigator.pushNamed(context, "/lost");
   }
 
   void onShapeTap() async {
-    print("shape tapped!");
-
     HapticFeedback.heavyImpact();
   }
 
@@ -41,6 +83,7 @@ class _GameState extends State<Game> {
 
     return Scaffold(
       backgroundColor: Colors.black,
+      key: scaffoldKey,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(40.0),
@@ -52,24 +95,22 @@ class _GameState extends State<Game> {
               // receive hero cross-screen animation for title
               Logo(
                 title: "shapeblinder",
-                subtitle: "current score: 0 | high: 3",
+                subtitle: "current score: $points | high: 3",
               ),
               Spacer(),
               Container(
                 height: width / 1.25,
                 width: width / 1.25,
-                child: Flexible(
-                  child: FractionallySizedBox(
-                    widthFactor: 1,
-                    heightFactor: 1,
-                    child: CanvasTouchDetector(
-                      builder: (context) {
-                        return CustomPaint(
-                          painter: Donut(context, onShapeTap),
-                        );
-                      },
-                    ),
-                  ),
+                child: CanvasTouchDetector(
+                  builder: (context) {
+                    return CustomPaint(
+                      painter: getWidgetForName(
+                        context,
+                        onShapeTap,
+                        data.options[data.correct],
+                      ),
+                    );
+                  },
                 ),
               ),
               Spacer(),
@@ -86,46 +127,30 @@ class _GameState extends State<Game> {
               Container(
                 height: 14,
               ),
-              Opacity(
-                opacity: 0.2,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    Container(
-                      height: width / 5,
-                      width: width / 5,
-                      child: GestureDetector(
-                        onTap: () => guess(1),
-                        child: SvgPicture.asset(
-                          "assets/svg/donut.svg",
-                          semanticsLabel: 'arc icon',
+              Builder(
+                builder: (context) => RaisedButton(
+                  child: Opacity(
+                    opacity: 0.2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        ...data.options.map(
+                          (e) => Container(
+                            height: width / 5,
+                            width: width / 5,
+                            child: GestureDetector(
+                              onTap: () => guess(context, e),
+                              child: SvgPicture.asset(
+                                "assets/svg/$e.svg",
+                                semanticsLabel: '$e icon',
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                    Container(
-                      height: width / 5,
-                      width: width / 5,
-                      child: GestureDetector(
-                        onTap: () => guess(2),
-                        child: SvgPicture.asset(
-                          "assets/svg/circle.svg",
-                          semanticsLabel: 'circle icon',
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: width / 5,
-                      width: width / 5,
-                      child: GestureDetector(
-                        onTap: () => guess(3),
-                        child: SvgPicture.asset(
-                          "assets/svg/square.svg",
-                          semanticsLabel: 'cross icon',
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ],

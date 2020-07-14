@@ -15,7 +15,7 @@ class Lost extends StatelessWidget {
         onTap: () {
           // navigate to the game screen
           HapticFeedback.lightImpact();
-          Navigator.pushNamed(context, "/game");
+          Navigator.pop(context);
         },
         // SafeArea adds padding for device-specific reasons
         // (e.g. bottom draggable bar on some iPhones, etc.)

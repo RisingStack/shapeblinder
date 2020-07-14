@@ -18,7 +18,7 @@ class Oval extends CustomPainter {
         MediaQuery.of(context).size.width / 1.25,
         MediaQuery.of(context).size.width / 4,
       ),
-      Paint()..color = Colors.orange,
+      Paint()..color = Colors.transparent,
       onTapDown: (tapdetail) {
         onTap();
       },

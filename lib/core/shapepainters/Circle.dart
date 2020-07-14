@@ -17,7 +17,7 @@ class Circle extends CustomPainter {
         MediaQuery.of(context).size.width / 2.5,
       ),
       MediaQuery.of(context).size.width / 2.25,
-      Paint()..color = Colors.orange,
+      Paint()..color = Colors.transparent,
       onTapDown: (tapdetail) {
         onTap();
       },

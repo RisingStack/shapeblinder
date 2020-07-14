@@ -18,7 +18,7 @@ class Donut extends CustomPainter {
       ),
       MediaQuery.of(context).size.width / 2.75,
       Paint()
-        ..color = Colors.orange
+        ..color = Colors.transparent
         ..strokeWidth = 50
         ..style = PaintingStyle.stroke,
       onTapDown: (tapdetail) {
