@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import "package:flutter_svg/flutter_svg.dart";
 
 import "../widgets/Logo.dart";
@@ -13,6 +14,7 @@ class Lost extends StatelessWidget {
         behavior: HitTestBehavior.opaque,
         onTap: () {
           // navigate to the game screen
+          HapticFeedback.lightImpact();
           Navigator.pushNamed(context, "/game");
         },
         // SafeArea adds padding for device-specific reasons

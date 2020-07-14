@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import "package:flutter_svg/flutter_svg.dart";
 import 'package:touchable/touchable.dart';
-import '../../core/shapepainters/Square.dart';
+
+import '../../core/shapepainters/Donut.dart';
 
 import "../widgets/Logo.dart";
 
@@ -14,17 +16,23 @@ class _GameState extends State<Game> {
   int point;
 
   void guess(int index) {
+    HapticFeedback.lightImpact();
     print("guess: $index");
   }
 
-  void generateRound() {}
+  void correct() {
+    HapticFeedback.vibrate();
+  }
 
   void lost() {
+    HapticFeedback.vibrate();
     Navigator.pushNamed(context, "/lost");
   }
 
-  void onShapeTap() {
+  void onShapeTap() async {
     print("shape tapped!");
+
+    HapticFeedback.heavyImpact();
   }
 
   @override
@@ -57,7 +65,7 @@ class _GameState extends State<Game> {
                     child: CanvasTouchDetector(
                       builder: (context) {
                         return CustomPaint(
-                          painter: Square(context, onShapeTap),
+                          painter: Donut(context, onShapeTap),
                         );
                       },
                     ),
@@ -101,7 +109,7 @@ class _GameState extends State<Game> {
                       child: GestureDetector(
                         onTap: () => guess(2),
                         child: SvgPicture.asset(
-                          "assets/svg/r-square.svg",
+                          "assets/svg/circle.svg",
                           semanticsLabel: 'circle icon',
                         ),
                       ),
