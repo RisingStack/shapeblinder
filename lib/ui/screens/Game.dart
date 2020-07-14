@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:flutter_svg/flutter_svg.dart";
+import 'package:touchable/touchable.dart';
+import '../../core/shapepainters/Cross.dart';
 
 import "../widgets/Logo.dart";
 
@@ -13,13 +15,16 @@ class _GameState extends State<Game> {
 
   void guess(int index) {
     print("guess: $index");
-    Navigator.pushNamed(context, "/lost");
   }
 
   void generateRound() {}
 
   void lost() {
     Navigator.pushNamed(context, "/lost");
+  }
+
+  void onShapeTap() {
+    print("shape tapped!");
   }
 
   @override
@@ -45,14 +50,17 @@ class _GameState extends State<Game> {
               Container(
                 height: width / 1.25,
                 width: width / 1.25,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.deferToChild,
-                  onTap: () {
-                    print("hi");
-                  },
-                  child: SvgPicture.asset(
-                    "assets/svg/tap.svg",
-                    semanticsLabel: 'tap icon',
+                child: Flexible(
+                  child: FractionallySizedBox(
+                    widthFactor: 1,
+                    heightFactor: 1,
+                    child: CanvasTouchDetector(
+                      builder: (context) {
+                        return CustomPaint(
+                          painter: Cross(context, onShapeTap),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -82,7 +90,7 @@ class _GameState extends State<Game> {
                       child: GestureDetector(
                         onTap: () => guess(1),
                         child: SvgPicture.asset(
-                          "assets/svg/triangle.svg",
+                          "assets/svg/line.svg",
                           semanticsLabel: 'arc icon',
                         ),
                       ),
@@ -93,7 +101,7 @@ class _GameState extends State<Game> {
                       child: GestureDetector(
                         onTap: () => guess(2),
                         child: SvgPicture.asset(
-                          "assets/svg/circle.svg",
+                          "assets/svg/cross.svg",
                           semanticsLabel: 'circle icon',
                         ),
                       ),
@@ -104,7 +112,7 @@ class _GameState extends State<Game> {
                       child: GestureDetector(
                         onTap: () => guess(3),
                         child: SvgPicture.asset(
-                          "assets/svg/cross.svg",
+                          "assets/svg/donut.svg",
                           semanticsLabel: 'cross icon',
                         ),
                       ),
