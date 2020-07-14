@@ -1,34 +1,83 @@
 import 'package:flutter/material.dart';
+import "package:flutter_svg/flutter_svg.dart";
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "shapeblinder",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 34.0,
-                color: Colors.white,
-              ),
+      body: GestureDetector(
+        // tapping on empty spaces would not trigger the onTap without this
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          // navigate to the game screen
+          Navigator.pushNamed(context, "/game");
+        },
+        // SafeArea adds padding for device-specific reasons
+        // (e.g. bottom draggable bar on some iPhones, etc.)
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Spacer(
+                  flex: 2,
+                ),
+                Text(
+                  "shapeblinder",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 34.0,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  "a game with the lights off",
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    // The Color.xy[n] gets a specific shade of the color
+                    color: Colors.grey[600],
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                Spacer(),
+                Center(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        height: 75,
+                        child: SvgPicture.asset(
+                          "assets/svg/tap.svg",
+                          semanticsLabel: 'tap icon',
+                        ),
+                      ),
+                      // give some space between the illuistration and the text:
+                      Container(
+                        height: 14,
+                      ),
+                      Text(
+                        "tap anywhere to start",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      Text(
+                        "best score: 0",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.grey[600],
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Text(
-              "a game with the lights off",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24.0,
-                color: Colors.grey[600],
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

@@ -1,7 +1,7 @@
 name: shapeblinder
 description: A new Flutter project.
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.3
+  flutter_svg: any
 
 dev_dependencies:
   flutter_test:
@@ -20,10 +21,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/svg/tap.svg
+
   fonts:
     - family: Muli
       fonts:
         - asset: assets/fonts/Muli.ttf
         - asset: assets/fonts/Muli-Italic.ttf
           style: italic
-  
