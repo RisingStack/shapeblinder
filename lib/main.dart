@@ -16,6 +16,7 @@ class Shapeblinder extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: "Muli",
       ),
       home: Home(),
       routes: <String, WidgetBuilder>{
