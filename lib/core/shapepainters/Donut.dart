@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:touchable/touchable.dart';
 
-class Circle extends CustomPainter {
+class Donut extends CustomPainter {
   final BuildContext context;
   final Function onTap;
 
-  Circle(this.context, this.onTap);
+  Donut(this.context, this.onTap);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -16,8 +16,11 @@ class Circle extends CustomPainter {
         MediaQuery.of(context).size.width / 2.5,
         MediaQuery.of(context).size.width / 2.5,
       ),
-      MediaQuery.of(context).size.width / 2.25,
-      Paint()..color = Colors.orange,
+      MediaQuery.of(context).size.width / 2.75,
+      Paint()
+        ..color = Colors.orange
+        ..strokeWidth = 50
+        ..style = PaintingStyle.stroke,
       onTapDown: (tapdetail) {
         onTap();
       },

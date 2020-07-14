@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:flutter_svg/flutter_svg.dart";
 import 'package:touchable/touchable.dart';
-import '../../core/shapepainters/Line.dart';
+import '../../core/shapepainters/Oval.dart';
 
 import "../widgets/Logo.dart";
 
@@ -57,7 +57,7 @@ class _GameState extends State<Game> {
                     child: CanvasTouchDetector(
                       builder: (context) {
                         return CustomPaint(
-                          painter: Cross(context, onShapeTap),
+                          painter: Oval(context, onShapeTap),
                         );
                       },
                     ),
@@ -90,7 +90,7 @@ class _GameState extends State<Game> {
                       child: GestureDetector(
                         onTap: () => guess(1),
                         child: SvgPicture.asset(
-                          "assets/svg/line.svg",
+                          "assets/svg/oval.svg",
                           semanticsLabel: 'arc icon',
                         ),
                       ),
@@ -101,7 +101,7 @@ class _GameState extends State<Game> {
                       child: GestureDetector(
                         onTap: () => guess(2),
                         child: SvgPicture.asset(
-                          "assets/svg/cross.svg",
+                          "assets/svg/r-square.svg",
                           semanticsLabel: 'circle icon',
                         ),
                       ),
@@ -112,7 +112,7 @@ class _GameState extends State<Game> {
                       child: GestureDetector(
                         onTap: () => guess(3),
                         child: SvgPicture.asset(
-                          "assets/svg/donut.svg",
+                          "assets/svg/square.svg",
                           semanticsLabel: 'cross icon',
                         ),
                       ),

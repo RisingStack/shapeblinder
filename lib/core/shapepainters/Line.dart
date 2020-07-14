@@ -21,7 +21,7 @@ class Line extends CustomPainter {
         0,
       ),
       Paint()
-        ..color = Colors.transparent
+        ..color = Colors.orange
         ..strokeWidth = 75,
       onTapDown: (tapdetail) {
         onTap();

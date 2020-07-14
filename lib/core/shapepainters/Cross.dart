@@ -21,7 +21,7 @@ class Cross extends CustomPainter {
         0,
       ),
       Paint()
-        ..color = Colors.transparent
+        ..color = Colors.orange
         ..strokeWidth = 75,
       onTapDown: (tapdetail) {
         onTap();
@@ -38,7 +38,7 @@ class Cross extends CustomPainter {
         MediaQuery.of(context).size.width / 1.25,
       ),
       Paint()
-        ..color = Colors.transparent
+        ..color = Colors.orange
         ..strokeWidth = 75,
       onTapDown: (tapdetail) {
         onTap();
