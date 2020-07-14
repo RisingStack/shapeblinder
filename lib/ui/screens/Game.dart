@@ -128,28 +128,26 @@ class _GameState extends State<Game> {
                 height: 14,
               ),
               Builder(
-                builder: (context) => RaisedButton(
-                  child: Opacity(
-                    opacity: 0.2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        ...data.options.map(
-                          (e) => Container(
-                            height: width / 5,
-                            width: width / 5,
-                            child: GestureDetector(
-                              onTap: () => guess(context, e),
-                              child: SvgPicture.asset(
-                                "assets/svg/$e.svg",
-                                semanticsLabel: '$e icon',
-                              ),
+                builder: (context) => Opacity(
+                  opacity: 0.2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      ...data.options.map(
+                        (e) => Container(
+                          height: width / 5,
+                          width: width / 5,
+                          child: GestureDetector(
+                            onTap: () => guess(context, e),
+                            child: SvgPicture.asset(
+                              "assets/svg/$e.svg",
+                              semanticsLabel: '$e icon',
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
