@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import "package:flutter_svg/flutter_svg.dart";
 
+import "../widgets/Logo.dart";
+
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,22 +27,9 @@ class Home extends StatelessWidget {
                 Spacer(
                   flex: 2,
                 ),
-                Text(
-                  "shapeblinder",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 34.0,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  "a game with the lights off",
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    // The Color.xy[n] gets a specific shade of the color
-                    color: Colors.grey[600],
-                    fontStyle: FontStyle.italic,
-                  ),
+                // add hero cross-screen animation for title
+                Logo(
+                  subtitleText: "a game with the lights off",
                 ),
                 Spacer(),
                 Center(
