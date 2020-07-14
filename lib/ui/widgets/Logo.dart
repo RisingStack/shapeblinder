@@ -14,6 +14,7 @@ class Logo extends StatelessWidget {
       child: Material(
         type: MaterialType.transparency,
         child: Container(
+          width: MediaQuery.of(context).size.width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
