@@ -36,7 +36,7 @@ class Home extends StatelessWidget {
                 ),
                 Spacer(),
                 Tap(
-                  title: "tap anywhere to start again",
+                  title: "tap anywhere to start",
                 ),
               ],
             ),

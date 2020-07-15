@@ -1,4 +1,4 @@
-package com.example.shapeblinder
+package hu.danielgrgly.shapeblinder
 
 import io.flutter.embedding.android.FlutterActivity
 
