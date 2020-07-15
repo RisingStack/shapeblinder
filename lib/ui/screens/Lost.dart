@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import "package:flutter_svg/flutter_svg.dart";
 
 import "../widgets/Logo.dart";
+import "../widgets/Tap.dart";
+
+// passing props to this screen with arguments
+// you'll need to construct this class in the sender screen, to
+// (in our case, the Game.dart)
+class LostScreenArguments {
+  final int points;
+
+  LostScreenArguments(this.points);
+}
 
 class Lost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // extract the arguments from the previously discussed class
+    final LostScreenArguments args = ModalRoute.of(context).settings.arguments;
+    // you'll be able to access it by: args.points
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: GestureDetector(
@@ -32,40 +45,12 @@ class Lost extends StatelessWidget {
                 // add hero cross-screen animation for title
                 Logo(
                   title: "you lost",
-                  subtitle: "score: 0",
+                  // string interpolation with the ${} syntax
+                  subtitle: "score: ${args.points}",
                 ),
                 Spacer(),
-                Center(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        height: 75,
-                        child: SvgPicture.asset(
-                          "assets/svg/tap.svg",
-                          semanticsLabel: 'tap icon',
-                        ),
-                      ),
-                      // give some space between the illuistration and the text:
-                      Container(
-                        height: 14,
-                      ),
-                      Text(
-                        "tap anywhere to start again",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      Text(
-                        "best score: 0",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.grey[600],
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ],
-                  ),
+                Tap(
+                  title: "tap anywhere to start again",
                 ),
               ],
             ),

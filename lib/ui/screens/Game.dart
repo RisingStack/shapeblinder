@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import "package:flutter_svg/flutter_svg.dart";
 import 'package:touchable/touchable.dart';
+import "package:shared_preferences/shared_preferences.dart";
 
 import '../../core/GenerateRound.dart';
-
 import "../widgets/Logo.dart";
+import "./Lost.dart";
 
 class Game extends StatefulWidget {
   @override
@@ -16,10 +17,12 @@ class _GameState extends State<Game> {
   final GlobalKey scaffoldKey = GlobalKey();
   RoundData data;
   int points = 0;
+  int high = 0;
 
   @override
   void initState() {
     reset();
+    loadHigh();
     super.initState();
   }
 
@@ -27,6 +30,23 @@ class _GameState extends State<Game> {
     setState(() {
       points = 0;
       data = generateRound();
+    });
+  }
+
+  void loadHigh() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      high = prefs.getInt('high') ?? 0;
+    });
+  }
+
+  void setHigh(int pts) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('high', pts);
+
+    setState(() {
+      high = pts;
     });
   }
 
@@ -69,8 +89,19 @@ class _GameState extends State<Game> {
 
   void lost() {
     HapticFeedback.vibrate();
+
+    if (points > high) {
+      setHigh(points);
+    }
+
+    Navigator.pushNamed(
+      context,
+      "/lost",
+      // pass arguments with this constructor:
+      arguments: LostScreenArguments(points),
+    );
+
     reset();
-    Navigator.pushNamed(context, "/lost");
   }
 
   void onShapeTap() async {
@@ -95,7 +126,7 @@ class _GameState extends State<Game> {
               // receive hero cross-screen animation for title
               Logo(
                 title: "shapeblinder",
-                subtitle: "current score: $points | high: 3",
+                subtitle: "current score: $points | high: $high",
               ),
               Spacer(),
               Container(

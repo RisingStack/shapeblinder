@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import "package:flutter_svg/flutter_svg.dart";
 
 import "../widgets/Logo.dart";
+import "../widgets/Tap.dart";
 
 class Home extends StatelessWidget {
   @override
@@ -35,37 +35,8 @@ class Home extends StatelessWidget {
                   subtitle: "a game with the lights off",
                 ),
                 Spacer(),
-                Center(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        height: 75,
-                        child: SvgPicture.asset(
-                          "assets/svg/tap.svg",
-                          semanticsLabel: 'tap icon',
-                        ),
-                      ),
-                      // give some space between the illuistration and the text:
-                      Container(
-                        height: 14,
-                      ),
-                      Text(
-                        "tap anywhere to start",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      Text(
-                        "best score: 0",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.grey[600],
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ],
-                  ),
+                Tap(
+                  title: "tap anywhere to start again",
                 ),
               ],
             ),
