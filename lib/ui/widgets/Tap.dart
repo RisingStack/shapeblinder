@@ -36,7 +36,7 @@ class _TapState extends State<Tap> {
               semanticsLabel: 'tap icon',
             ),
           ),
-          // give some space between the illuistration and the text:
+          // give some space between the illustration and the text:
           Container(
             height: 14,
           ),

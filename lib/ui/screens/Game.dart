@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import "package:flutter_svg/flutter_svg.dart";
+import 'package:shapeblinder/core/HapticUtilities.dart';
 import 'package:touchable/touchable.dart';
 import "package:shared_preferences/shared_preferences.dart";
 
-import '../../core/GenerateRound.dart';
+import '../../core/RoundUtilities.dart';
+import '../../core/HapticUtilities.dart';
 import "../widgets/Layout.dart";
 import "../widgets/Logo.dart";
 import "./Lost.dart";
@@ -20,6 +21,8 @@ class _GameState extends State<Game> {
   int points = 0;
   int high = 0;
 
+// the initState method is ran by Flutter when the element is first time painted
+// it's like componentDidMount in React
   @override
   void initState() {
     reset();
@@ -52,49 +55,61 @@ class _GameState extends State<Game> {
   }
 
   void guess(BuildContext context, String name) {
-    HapticFeedback.lightImpact();
-    if (data.options[data.correct] == name) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.green,
-          duration: Duration(seconds: 1),
-          content: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Icon(
-                Icons.check,
-                size: 80,
-              ),
-              Container(width: 10),
-              Text(
-                "Correct!",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
+    lightHaptic();
 
-      setState(() {
-        points++;
-        data = generateRound();
-      });
+    if (data.options[data.correct] == name) {
+      // correct guess!
+      correctGuess(context);
     } else {
+      // wrong guess
       lost();
     }
   }
 
-  void lost() {
-    HapticFeedback.vibrate();
+  void correctGuess(BuildContext context) {
+    // show snackbar
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 1),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              Icons.check,
+              size: 80,
+            ),
+            Container(width: 10),
+            Text(
+              "Correct!",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
 
+    // add one point, generate new round
+    setState(() {
+      points++;
+      data = generateRound();
+    });
+  }
+
+  void lost() {
+    vibrateHaptic();
+
+    // if the score is higher than the current high score,
+    // update the high score
     if (points > high) {
       setHigh(points);
     }
 
+    // navigate the user to the lost screen
     Navigator.pushNamed(
       context,
       "/lost",
@@ -102,11 +117,9 @@ class _GameState extends State<Game> {
       arguments: LostScreenArguments(points),
     );
 
+    // reset the game so that when the user comes back from the "lost" screen,
+    // a new, fresh round is ready
     reset();
-  }
-
-  void onShapeTap() async {
-    HapticFeedback.heavyImpact();
   }
 
   @override
@@ -128,9 +141,9 @@ class _GameState extends State<Game> {
           child: CanvasTouchDetector(
             builder: (context) {
               return CustomPaint(
-                painter: getWidgetForName(
+                painter: getPainterForName(
                   context,
-                  onShapeTap,
+                  vibrateHaptic,
                   data.options[data.correct],
                 ),
               );
@@ -156,7 +169,6 @@ class _GameState extends State<Game> {
             opacity: 0.2,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 ...data.options.map(
                   (e) => Container(

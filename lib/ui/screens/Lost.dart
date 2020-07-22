@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
+import '../../core/HapticUtilities.dart';
 import "../widgets/Layout.dart";
 import "../widgets/Logo.dart";
 import "../widgets/Tap.dart";
@@ -20,12 +20,12 @@ class Lost extends StatelessWidget {
     // extract the arguments from the previously discussed class
     final LostScreenArguments args = ModalRoute.of(context).settings.arguments;
     // you'll be able to access it by: args.points
-
+    
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
         // navigate to the game screen
-        HapticFeedback.lightImpact();
+        lightHaptic();
         Navigator.pop(context);
       },
       child: Layout(

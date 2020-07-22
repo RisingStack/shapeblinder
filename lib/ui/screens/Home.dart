@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
+import '../../core/HapticUtilities.dart';
 import "../widgets/Layout.dart";
 import "../widgets/Logo.dart";
 import "../widgets/Tap.dart";
@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: () {
         // navigate to the game screen
-        HapticFeedback.lightImpact();
+        lightHaptic();
         Navigator.pushNamed(context, "/game");
       },
       child: Layout(
@@ -21,7 +21,6 @@ class Home extends StatelessWidget {
           Spacer(
             flex: 2,
           ),
-          // add hero cross-screen animation for title
           Logo(
             title: "shapeblinder",
             subtitle: "a game with the lights off",
