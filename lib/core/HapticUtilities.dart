@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 import 'package:flutter/services.dart';
+import 'package:vibration/vibration.dart';
 
 void lightHaptic() {
   if (Platform.isIOS) {
@@ -7,11 +8,11 @@ void lightHaptic() {
   }
 }
 
-void vibrateHaptic() {
+void vibrateHaptic() {;
   if (Platform.isIOS) {
     HapticFeedback.heavyImpact();
   } else {
-    // this will work on most Android devices
-    HapticFeedback.vibrate();
+    // somewhy this is the only solution that works on Android...
+    Vibration.vibrate(duration: 100);
   }
 }

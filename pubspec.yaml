@@ -16,6 +16,7 @@ dependencies:
   flutter_svg: any
   touchable: any
   shared_preferences: any
+  vibration: ^1.4.0
 
 dev_dependencies:
   flutter_launcher_icons: "^0.7.3"
