@@ -1,16 +1,14 @@
 # shapeblinder
 
-A new Flutter project.
+A game with the lights off. Download from the [App Store](https://apps.apple.com/hu/app/shapeblinder/id1523640121) and [Google Play](https://play.google.com/store/apps/details?id=hu.danielgrgly.shapeblinder)
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a demo app for the RisingStack blog series "Dart and Flutter crash course for JS developers".
 
-A few resources to get you started if this is your first Flutter project:
+Read the series here 👇
+- First part - Dart: [https://blog.risingstack.com/learn-dart-language-beginner-tutorial/](https://blog.risingstack.com/learn-dart-language-beginner-tutorial/)
+- Second part - Flutter: [https://blog.risingstack.com/flutter-crash-course-javascript/](https://blog.risingstack.com/flutter-crash-course-javascript/)
+- Third part - building a game: [https://blog.risingstack.com/case-study-dart-flutter-mobile-game/](https://blog.risingstack.com/case-study-dart-flutter-mobile-game/)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
