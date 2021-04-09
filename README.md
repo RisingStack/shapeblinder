@@ -12,4 +12,5 @@ Read the series here 👇
 - Second part - Flutter: [https://blog.risingstack.com/flutter-crash-course-javascript/](https://blog.risingstack.com/flutter-crash-course-javascript/)
 - Third part - building a game: [https://blog.risingstack.com/case-study-dart-flutter-mobile-game/](https://blog.risingstack.com/case-study-dart-flutter-mobile-game/)
 - Fourth Part:
+- Fifth Part:
 
